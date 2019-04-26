@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo App</title>
+
+
+</head>
+
+<body>
+    <div id="app" class="container">
+        <h5>{{title}}</h5>
+
+        <div class="createBox">
+            <a class="btn-floating btn-large waves-effect waves-light blue right" v-if="!showtextbox"
+                v-on:click="addTask"><i class="material-icons">add</i> </a>
+            <a class="btn-large waves-effect waves-light red right" v-if="showtextbox" v-on:click="addTask"><i
+                    class="material-icons">close</i> </a>
+            <div class="card textbox" v-if='showtextbox'>
+                <template>
+                    <div class="input-field">
+                        <input v-model="task.title" type='text' class="validate" required>
+                        <span class="helper-text" data-error="Please Enter Task Title"></span>
+                        <label for="first_name">Title</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea v-model='task.note' class="materialize-textarea validate" required></textarea>
+                        <label for="textarea1">Task Note</label>
+                        <span class="helper-text" data-error="Please Enter Task Note"></span>
+                    </div>
+
+                </template><br />
+                </template>
+                <button class="btn btn-primary" v-on:click='saveTask'>Save</button>
+                <br />
+            </div>
+        </div>
+
+        <template>
+            <ul class="taskList">
+
+                <li v-for='task in orderedTasks'>
+                    <div class="card col s12 m7 primary" style="padding:1%">
+                        <div class="header">
+                            <a @click='deleteTask(task)' class="btn-floating btn-small halfway-fab waves-effect waves-light red">
+                                <i class="material-icons">delete</i>
+                               
+                            </a>
+                            <h6>{{task.title}} <small>Created on :{{ new Date(task.createdOn)}}</small>
+                            </h6>
+                        </div>
+                        <div class="cyan lighten-5 horizontal" >
+                            <div class="card-content" >
+                                <p @click='editTask($event)'>{{task.note}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </template>
+
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <script src="app.js"></script>
+</body>
+
+</html>

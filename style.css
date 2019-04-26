@@ -1,0 +1,12 @@
+
+.createBox{
+    overflow:auto;
+    padding-bottom: 3px;
+}
+.textbox{
+    padding:3%;
+}
+.taskList{
+   height:70vh;
+   overflow:auto;
+}
